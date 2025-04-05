@@ -35,12 +35,17 @@ app.post('/chat', async (req, res) => {
       }
     );
 
-    const reply = response.data.choices[0].message.content;
+    const reply = response.data.choices[0]?.message?.content || "No valid response.";
     res.json({ response: reply });
   } catch (error) {
     console.error('❌ OpenRouter API Error:', error?.response?.data || error.message);
-    res.status(500).json({ response: "❌ Assistant failed to respond." });
+    res.status(500).json({ response: "❌ Assistant failed to respond. Please try again later." });
   }
+});
+
+// Fallback route to handle undefined routes (useful for serving frontend routes)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // Default to frontend's main file
 });
 
 // Start server

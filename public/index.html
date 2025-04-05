@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sahayak – Your AI Companion</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #f0f8ff, #d0eaff); /* Soothing gradient */
+      color: #333;
+    }
+
+    .welcome-screen {
+      text-align: center;
+      padding: 100px 20px;
+      background-color: #0056a5;
+      color: white;
+    }
+
+    .welcome-screen h1 {
+      font-size: 3.5rem;
+    }
+
+    .welcome-screen h1 span {
+      color: #ffcc00;
+    }
+
+    .welcome-screen p {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+    }
+
+    #info-btn {
+      padding: 15px 25px;
+      font-size: 1.2rem;
+      background-color: #ffcc00;
+      color: #0056a5;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #info-btn:hover {
+      background-color: #ffb900;
+    }
+
+    .main-interface {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #0056a5;
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .category-buttons button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff6600;
+      color: white;
+      font-size: 1.2rem;
+      width: 160px;
+      height: 160px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-buttons button:hover {
+      background-color: #e55d00;
+    }
+
+    .category-buttons button i {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .chat-box {
+      background-color: white;
+      padding: 20px;
+      border-radius: 12px;
+      height: 320px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+      text-align: center;
+    }
+
+    #user-input {
+      padding: 12px;
+      font-size: 1.1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 60%;
+      margin-right: 10px;
+    }
+
+    #chat-form button {
+      padding: 12px 20px;
+      font-size: 1rem;
+      background-color: #0056a5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #chat-form button:hover {
+      background-color: #003d7a;
+    }
+
+    .emergency-section {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #emergency-button {
+      background-color: #ff4747;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    #emergency-button:hover {
+      background-color: #e03b3b;
+    }
+  </style>
+</head>
+<body>
+  <!-- Welcome Screen -->
+  <div class="welcome-screen">
+    <img src="sahayak.jpg" height="200px">
+    <h1>Welcome to <span>Sahayak</span></h1>
+    <p>Your AI-powered companion for senior citizens. Discover wellness tips, spiritual stories, government scheme updates, and more – all at your fingertips.</p>
+    <button id="info-btn">Let's Get Started</button>
+  </div>
+
+  <!-- Main Interface -->
+  <div class="main-interface hidden">
+    <h2>Choose What You Need</h2>
+    <div class="category-buttons">
+      <!-- Religious Companion Mode -->
+      <button data-type="religious">
+        <i>🕌</i>
+        Religious Mode
+      </button>
+      <!-- Wellness Mode -->
+      <button data-type="wellness">
+        <i>💖</i>
+        Wellness Mode
+      </button>
+      <!-- Government Scheme Info -->
+      <button data-type="scheme-info">
+        <i>📜</i>
+        Scheme Info
+      </button>
+      <!-- General Information Mode -->
+      <button data-type="general">
+        <i>💬</i>
+        General Info
+      </button>
+      <!-- Order Assistance Mode -->
+      <button data-type="order-assistance">
+        <i>🛍️</i>
+        Order Assistance
+      </button>
+    </div>
+
+    <!-- Chat Section -->
+    <div id="chat-box" class="chat-box">
+      <p>Choose a mode to start chatting!</p>
+    </div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Type your question here..." required />
+      <button type="button" id="voice-input">🎙️ Voice Input</button>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <!-- Emergency Assistance -->
+  <div class="emergency-section hidden">
+    <p>Need immediate help? Tap below for assistance.</p>
+    <button id="emergency-button">🚨 Emergency Help</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -8,6 +8,7 @@ const input = document.getElementById("user-input");
 let contextPrompt = "You are a helpful assistant.";
 
 infoBtn.addEventListener("click", () => {
+  // Hide the welcome screen and show the main interface
   welcome.classList.add("hidden");
   mainInterface.classList.remove("hidden");
 });
@@ -15,31 +16,37 @@ infoBtn.addEventListener("click", () => {
 document.querySelectorAll(".category-buttons button").forEach(button => {
   button.addEventListener("click", () => {
     const type = button.getAttribute("data-type");
+    // Adjust contextPrompt based on the chosen category
     switch (type) {
-      case "religion":
-        contextPrompt = "You are an expert in world religions. Ask any religious information.";
+      case "religious":
+        contextPrompt = "You are an expert in world religions. Ask about any religious information.";
         break;
-      case "wellbeing":
+      case "wellness":
         contextPrompt = "You are a wellbeing advisor. Ask for health and mental wellness tips.";
         break;
-      case "scheme":
+      case "scheme-info":
         contextPrompt = "You are a guide for Indian government schemes. Ask any scheme-related questions.";
         break;
       case "general":
         contextPrompt = "You are a helpful assistant. Ask anything.";
         break;
+      case "order-assistance":
+        contextPrompt = "You are an assistant for online shopping. Ask for order-related help.";
+        break;
+      default:
+        contextPrompt = "You are a helpful assistant.";
     }
-    appendMessage("bot", contextPrompt);
+    appendMessage("bot", `Switched to: ${type.charAt(0).toUpperCase() + type.slice(1)} mode.`);
   });
 });
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const userText = input.value.trim();
-  if (!userText) return;
+  if (!userText) return; // Prevent empty submissions
 
   appendMessage("user", userText);
-  input.value = "";
+  input.value = ""; // Clear the input field
 
   try {
     const res = await fetch("http://localhost:3000/chat", {
@@ -54,7 +61,7 @@ form.addEventListener("submit", async (e) => {
     const data = await res.json();
     appendMessage("bot", data.response || "No response from assistant.");
   } catch (err) {
-    appendMessage("bot", "❌ Assistant failed to respond.");
+    appendMessage("bot", "❌ Assistant failed to respond. Please try again later.");
   }
 });
 
@@ -63,5 +70,5 @@ function appendMessage(sender, text) {
   msg.className = `message ${sender}`;
   msg.textContent = text;
   chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBox.scrollTop = chatBox.scrollHeight; // Ensure the latest message is visible
 }
