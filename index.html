@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sahayak – Your AI Companion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="welcome-screen">
+    <h1>Welcome to <span>Sahayak</span></h1>
+    <p>Your AI-powered companion for wellness tips, religious discussions, government scheme info, and general queries.</p>
+    <button id="info-btn">Enter Assistant</button>
+  </div>
+
+  <div class="main-interface hidden">
+    <h2>Select a Category</h2>
+    <div class="category-buttons">
+      <button data-type="religion">🕌 Religion</button>
+      <button data-type="wellbeing">💖 Wellbeing</button>
+      <button data-type="scheme">📜 Scheme Info</button>
+      <button data-type="general">💬 General</button>
+    </div>
+    <div id="chat-box" class="chat-box"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Ask me anything..." required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
